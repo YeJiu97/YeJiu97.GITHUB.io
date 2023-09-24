@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="数据预测，进行数据探索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据探索与可视化">
+<meta property="og:url" content="http://example.com/2023/08/10/%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96/index.html">
+<meta property="og:site_name" content="夜久">
+<meta property="og:description" content="数据预测，进行数据探索">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-10T05:16:53.000Z">
+<meta property="article:modified_time" content="2023-09-18T15:47:43.699Z">
+<meta property="article:author" content="Ye Jiu">
+<meta property="article:tag" content="Predictive Analytics">
+<meta property="article:tag" content="预测分析">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/08/10/%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/08/10/%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96/","path":"2023/08/10/数据探索与可视化/","title":"数据探索与可视化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据探索与可视化 | 夜久</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">夜久</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-about"><a href="/about" rel="section">About</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section">Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section">Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section">Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/848368468&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/terence-vassallo-415912750" title="Ocelotter" target="_blank" style="color: #cccccc; text-decoration: none;">Ocelotter</a> · <a href="https://soundcloud.com/terence-vassallo-415912750/euphoria" title="Euphoria - 楽園の扉 中日字幕" target="_blank" style="color: #cccccc; text-decoration: none;">Euphoria - 楽園の扉 中日字幕</a></div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=535990&auto=1&height=66"></iframe>
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploring-Data"><span class="nav-number">1.</span> <span class="nav-text">Exploring Data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFData-Exploration"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Data Exploration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="nav-number">1.2.</span> <span class="nav-text">相关技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.3.</span> <span class="nav-text">鸢尾花数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistical-Summary"><span class="nav-number">1.4.</span> <span class="nav-text">Statistical Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">什么是可视化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E5%BD%A2"><span class="nav-number">2.2.</span> <span class="nav-text">可视化图形</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ye Jiu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/10/%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ye Jiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="夜久">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据探索与可视化 | 夜久">
+      <meta itemprop="description" content="数据预测，进行数据探索">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据探索与可视化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-08-10 14:46:53" itemprop="dateCreated datePublished" datetime="2023-08-10T14:46:53+09:30">2023-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-09-19 01:17:43" itemprop="dateModified" datetime="2023-09-19T01:17:43+09:30">2023-09-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数据科学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">数据预测，进行数据探索</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Exploring-Data"><a href="#Exploring-Data" class="headerlink" title="Exploring Data"></a>Exploring Data</h2><h3 id="什么是Data-Exploration"><a href="#什么是Data-Exploration" class="headerlink" title="什么是Data Exploration"></a>什么是Data Exploration</h3><p>数据探索是一种初步探索数据的过程，旨在更好地了解数据的特征。数据探索的主要动机包括：</p>
+<ul>
+<li>帮助选择适合预处理或分析的工具</li>
+<li>利用人类识别模式的能力 人们可以识别出数据分析工具所无法捕捉到的模式。 数据探索与探索性数据分析（EDA）领域相关，由统计学家约翰·图基（John Tukey）创造。</li>
+</ul>
+<h3 id="相关技术"><a href="#相关技术" class="headerlink" title="相关技术"></a>相关技术</h3><p>数据探索涉及以下相关技术：</p>
+<ol>
+<li>概述统计量（Summary Statistics）：概述统计量用于描述数据集的基本统计特征，例如平均值、中位数、方差、最大值、最小值等。通过概述统计量，我们可以获得数据的总体趋势和分布情况。</li>
+<li>可视化（Visualization）：可视化是通过图表、图形和图像等可视化方式呈现数据的过程。它可以帮助我们更直观地理解数据的模式、趋势和关系。例如，绘制直方图、散点图、折线图、热力图等可以揭示数据的分布、相关性、聚类等信息。</li>
+<li>在线分析处理（Online Analytical Processing，OLAP）：OLAP是一种多维数据分析技术，用于对大规模、复杂的数据集进行交互式分析。它允许用户以多个维度（如时间、地理位置、产品类别等）对数据进行切片、钻取和透视，以便发现数据中的模式、趋势和异常。</li>
+</ol>
+<p>具体例子如下：</p>
+<ol>
+<li>概述统计量：计算数据集的平均值、中位数、标准差、四分位数等。例如，通过计算一组销售数据的平均销售额和标准差，我们可以了解销售数据的中心趋势和分散程度。</li>
+<li>可视化：绘制散点图来显示两个变量之间的关系，或绘制直方图以观察数据的分布情况。例如，通过绘制饼图来展示产品销售额的占比，我们可以清晰地看到每个产品对总销售额的贡献。</li>
+<li>OLAP：使用交互式的多维分析工具，如Tableau或Power BI，对销售数据进行切片、钻取和透视分析。通过 OLAP，我们可以从不同角度（如时间、地区、产品类型）对销售数据进行分析，以发现销售额的季节性变化、地区间的差异等。</li>
+</ol>
+<p>这些技术都可以帮助研究人员更好地理解数据，发现隐藏在数据中的模式和信息。</p>
+<h3 id="鸢尾花数据集"><a href="#鸢尾花数据集" class="headerlink" title="鸢尾花数据集"></a>鸢尾花数据集</h3><p>鸢尾花数据集（Iris Dataset）是一个经典的用于机器学习和统计分析的数据集。该数据集由美国植物学家Edgar Anderson收集，并由统计学家Ronald Fisher在1936年的一篇论文中首次引入。鸢尾花数据集以鸢尾属植物的三个品种（类别）和四个非类别属性为特征而闻名。</p>
+<p>该数据集包含了150个样本，每个样本代表一朵鸢尾花。每个样本具有以下属性：</p>
+<ol>
+<li>萼片（Sepal）宽度和长度：萼片是花朵的外层绿色叶片，它们围绕在花朵的底部。数据集记录了每个样本的萼片的宽度和长度。</li>
+<li>花瓣（Petal）宽度和长度：花瓣是花朵的鲜艳彩色部分，它们通常位于花朵的中央。数据集记录了每个样本的花瓣的宽度和长度。</li>
+</ol>
+<p>根据这四个非类别属性，每个样本都被归类为鸢尾花的三个品种之一：</p>
+<ol>
+<li>山鸢尾（Setosa）：山鸢尾是鸢尾属植物中的一种，具有相对较小的花瓣和萼片，通常呈现出明显的蓝色色调。</li>
+<li>维吉尼亚鸢尾（Virginica）：维吉尼亚鸢尾也是鸢尾属植物的一种，具有相对较大的花瓣和萼片，通常呈现出深紫色或暗红色的色调。</li>
+<li>变色鸢尾（Versicolour）：变色鸢尾是鸢尾属植物中的另一种，具有介于山鸢尾和维吉尼亚鸢尾之间的花瓣和萼片大小，通常呈现出淡紫色或淡粉色的色调。</li>
+</ol>
+<p>鸢尾花数据集被广泛用于分类和聚类任务的研究，以及机器学习算法的测试和演示。由于其简单性和可解释性，鸢尾花数据集成为许多机器学习入门教程和示例的常用数据集之一。</p>
+<h3 id="Statistical-Summary"><a href="#Statistical-Summary" class="headerlink" title="Statistical Summary"></a>Statistical Summary</h3><p>统计摘要（Statistical Summary）是一种用于描述数据集的基本统计特征的方法。它提供了数据的总体概况，包括集中趋势、分散程度和分布形态等方面的信息。常用的统计摘要指标包括均值、中位数、标准差、四分位数和偏度等。</p>
+<p>统计摘要可以衡量以下数据特征：</p>
+<ol>
+<li>集中趋势（Central Tendency）：用于衡量数据的中心位置或平均水平。常见的统计指标有均值（mean）、中位数（median）和众数（mode）。例如，计算一组学生成绩的平均值可以提供关于整体学生表现的集中趋势信息。</li>
+<li>分散程度（Variability）：用于衡量数据的离散程度或变异程度。常见的统计指标有标准差（standard deviation）、方差（variance）和四分位数（quartiles）。例如，计算一组产品销售额的标准差可以揭示销售额的离散程度。</li>
+<li>分布形态（Distribution Shape）：用于描述数据分布的形状特征。常见的统计指标有偏度（skewness）和峰度（kurtosis）。偏度可以衡量数据分布的偏斜程度，而峰度可以衡量数据分布的尖锐程度。例如，通过计算一组房价数据的偏度，我们可以判断该市场的房价分布是向左偏斜（负偏度）还是向右偏斜（正偏度）。</li>
+</ol>
+<p>具体例子如下：</p>
+<p>假设有一组学生的考试成绩数据：[85, 90, 75, 92, 80]</p>
+<ol>
+<li>集中趋势：计算平均值和中位数。</li>
+</ol>
+<ul>
+<li>平均值：(85 + 90 + 75 + 92 + 80) &#x2F; 5 &#x3D; 84.4</li>
+<li>中位数：将数据按升序排列为 [75, 80, 85, 90, 92]，中间值为 85。</li>
+</ul>
+<ol>
+<li>分散程度：计算标准差和方差。</li>
+</ol>
+<ul>
+<li>标准差：使用公式计算标准差，得到结果为 6.42。</li>
+<li>方差：标准差的平方，即 (6.42)^2 &#x3D; 41.22。</li>
+</ul>
+<ol>
+<li>分布形态：计算偏度。</li>
+</ol>
+<ul>
+<li>偏度：使用公式计算偏度，得到结果为 -0.07。由于偏度接近零，可以认为数据分布大致对称。</li>
+</ul>
+<p>通过这些统计摘要指标，我们可以了解学生考试成绩的平均水平（集中趋势）、成绩的离散程度（分散程度）以及成绩分布的大致形态（分布形态）。</p>
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><h3 id="什么是可视化"><a href="#什么是可视化" class="headerlink" title="什么是可视化"></a>什么是可视化</h3><p>可视化是将数据以图表、图形、图像等可视化形式呈现的过程。它利用视觉感知能力，将数据转化为易于理解和解释的视觉表达，以帮助人们更直观地理解数据、发现模式、趋势和关系。</p>
+<p>进行可视化有以下几个重要原因：</p>
+<ol>
+<li>数据理解和探索：可视化可以帮助我们更好地理解数据。通过将数据可视化，我们可以直观地看到数据的分布情况、趋势、异常值等。它帮助我们发现数据中的规律和隐藏的信息，以便更好地了解数据的特点和性质。</li>
+<li>模式和趋势识别：人类的视觉感知能力在识别模式和趋势方面非常强大。通过可视化数据，我们可以更容易地发现数据中的关联、聚类、周期性等模式。例如，绘制折线图可以显示数据随时间的变化趋势，帮助我们分析趋势和季节性变化。</li>
+<li>数据沟通和传达：可视化是一种直观且易于理解的方式来传达数据和分析结果。图表和图形能够将复杂的数据和统计结果转化为简洁、清晰的视觉呈现。通过可视化，我们可以更有效地与他人分享数据发现、故事和见解。</li>
+<li>决策支持：可视化在决策过程中起着关键作用。它可以帮助决策者更全面地了解问题和情况，从而做出更明智的决策。可视化可以提供洞见，揭示数据中的关键因素和趋势，从而为决策者提供基于数据的支持。</li>
+</ol>
+<p>总之，可视化是一种强大的工具，可以帮助我们探索和理解数据，发现模式和趋势，以及更好地传达和支持决策。通过视觉化数据，我们可以将抽象的数字转化为直观的图像，让数据更容易被理解和利用。</p>
+<h3 id="可视化图形"><a href="#可视化图形" class="headerlink" title="可视化图形"></a>可视化图形</h3><p>下表列出了常见的可视化图表类型、适用的数据类型以及使用时机的概述：</p>
+<table>
+<thead>
+<tr>
+<th>图表类型</th>
+<th>适用数据类型</th>
+<th>使用时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>直方图（Histogram）</td>
+<td>数值型数据</td>
+<td>展示数据的分布情况，观察数据的集中趋势、离散程度和异常值等</td>
+</tr>
+<tr>
+<td>散点图（Scatter Plot）</td>
+<td>数值型数据（两个变量之间的关系）</td>
+<td>分析变量之间的相关性、趋势和离群点，检测异常值等</td>
+</tr>
+<tr>
+<td>折线图（Line Chart）</td>
+<td>数值型数据（随时间变化的趋势）</td>
+<td>显示数据随时间的趋势和变化，观察季节性、周期性等</td>
+</tr>
+<tr>
+<td>条形图（Bar Chart）</td>
+<td>分类型数据</td>
+<td>对比不同类别的数据，展示类别间的差异和关系，适用于离散数据</td>
+</tr>
+<tr>
+<td>饼图（Pie Chart）</td>
+<td>分类型数据（占比）</td>
+<td>显示各类别占总体的比例，适用于展示部分与整体之间的关系</td>
+</tr>
+<tr>
+<td>箱线图（Box Plot）</td>
+<td>数值型数据（多个变量的分布和离群点）</td>
+<td>显示数据的五数概括、离群点和分布形态，比较多个变量的分布和离群点</td>
+</tr>
+<tr>
+<td>热力图（Heatmap）</td>
+<td>数值型数据（二维矩阵）</td>
+<td>可视化矩阵数据，展示变量之间的关系和模式，常用于相关性分析和聚类分析等</td>
+</tr>
+<tr>
+<td>地图（Map）</td>
+<td>地理空间数据</td>
+<td>可视化地理空间数据，展示地区、国家等的分布情况、差异和关系</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Predictive-Analytics/" rel="tag"># Predictive Analytics</a>
+              <a href="/tags/%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90/" rel="tag"># 预测分析</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8ChatGPT/" rel="prev" title="如何使用ChatGPT">
+                  <i class="fa fa-chevron-left"></i> 如何使用ChatGPT
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/09/17/%E9%AB%98%E7%AD%89%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7II/" rel="next" title="高等分析工具II">
+                  高等分析工具II <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ye Jiu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="大型组织中的客户分析 笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大型组织中的客户分析-02：A&#x2F;B测试和离散选项实验">
+<meta property="og:url" content="http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/index.html">
+<meta property="og:site_name" content="夜久">
+<meta property="og:description" content="大型组织中的客户分析 笔记">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310135442547.png">
+<meta property="og:image" content="http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310141605430.png">
+<meta property="og:image" content="http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310142141404.png">
+<meta property="og:image" content="http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310142839722.png">
+<meta property="og:image" content="http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310145743888.png">
+<meta property="article:published_time" content="2024-03-10T03:01:48.000Z">
+<meta property="article:modified_time" content="2024-03-10T07:57:34.308Z">
+<meta property="article:author" content="Ye Jiu">
+<meta property="article:tag" content="数据分析">
+<meta property="article:tag" content="客户分析">
+<meta property="article:tag" content="统计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310135442547.png">
+
+
+<link rel="canonical" href="http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/","path":"2024/03/10/大型组织中的客户分析-02：A-B测试和离散选项实验/","title":"大型组织中的客户分析-02：A/B测试和离散选项实验"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>大型组织中的客户分析-02：A/B测试和离散选项实验 | 夜久</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">夜久</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-about"><a href="/about" rel="section">About</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section">Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section">Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section">Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/848368468&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/terence-vassallo-415912750" title="Ocelotter" target="_blank" style="color: #cccccc; text-decoration: none;">Ocelotter</a> · <a href="https://soundcloud.com/terence-vassallo-415912750/euphoria" title="Euphoria - 楽園の扉 中日字幕" target="_blank" style="color: #cccccc; text-decoration: none;">Euphoria - 楽園の扉 中日字幕</a></div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=535990&auto=1&height=66"></iframe>
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#A-B-testing"><span class="nav-number">1.</span> <span class="nav-text">A&#x2F;B testing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#T-test"><span class="nav-number">2.</span> <span class="nav-text">T-test</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Discrete-Choice-Experiment"><span class="nav-number">3.</span> <span class="nav-text">Discrete Choice Experiment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#R%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">R语言代码与设计</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ye Jiu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ye Jiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="夜久">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="大型组织中的客户分析-02：A/B测试和离散选项实验 | 夜久">
+      <meta itemprop="description" content="大型组织中的客户分析 笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大型组织中的客户分析-02：A/B测试和离散选项实验
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-03-10 13:31:48 / Modified: 18:27:34" itemprop="dateCreated datePublished" datetime="2024-03-10T13:31:48+10:30">2024-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">大型组织中的客户分析</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">大型组织中的客户分析 笔记</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="A-B-testing"><a href="#A-B-testing" class="headerlink" title="A&#x2F;B testing"></a>A&#x2F;B testing</h1><p><strong>什么是A&#x2F;B testing</strong></p>
+<p>A&#x2F;B testing是一种实验性的方法，用于比较两个或多个版本的产品、服务或策略，以确定哪个版本能够实现更好的结果。在A&#x2F;B测试中，一个变量（例如网页设计、广告文案、定价策略等）被改变，然后观察这种改变对用户行为或业务指标的影响。</p>
+<p>A&#x2F;B测试的基本原理是将受众随机分为两个或多个组，每个组都看到不同的版本，然后收集和分析每个组的数据以确定哪个版本表现更好。</p>
+<p>举个例子，假设一个电子商务网站想要测试一个新的购物车页面设计。他们可以将网站的访问者随机分为两组：A组看到原来的购物车页面，B组看到新设计的购物车页面。然后，他们可以收集有关每个组的转化率、平均订单价、订单完成时间等数据，并进行统计分析，以确定哪个版本的购物车页面效果更好。</p>
+<p>A&#x2F;B测试可以帮助组织做出更加基于数据的决策，优化产品和服务，提高用户体验，最大程度地提高业务效果。</p>
+<p><strong>修改变量</strong></p>
+<p>通常情况下，A&#x2F;B测试确实会专注于修改一个变量，这样可以更准确地确定哪个变化导致了实验结果的变化。这种方法有助于消除混淆因素，使得结果更容易解释和理解。</p>
+<p>通过只修改一个变量，比较不同版本之间的差异更容易被观察和量化。如果同时修改多个变量，当实验结果出现变化时，很难确定到底是哪个变量的改变导致了这种结果。</p>
+<p>然而，在某些情况下，也可以进行更复杂的实验设计，比如多因素实验设计或多变量测试。但是，这种方法通常需要更大的样本量和更复杂的统计分析，同时也可能增加实验的复杂性和不确定性。因此，对于大多数A&#x2F;B测试，一次只修改一个变量是常见的做法。</p>
+<p><strong>一个具体的例子</strong></p>
+<p>背景：假设我们有一个电子商务网站，想要测试两种不同的广告文案来促销同一款产品：一种是“免费送货”，另一种是“优惠10%”。我们希望知道哪种广告文案可以吸引更多的用户点击，并最终导致更多的购买。</p>
+<p>A&#x2F;B testing的设计与实现：</p>
+<ol>
+<li>设计： 首先，我们随机将网站的访问者分成两组：A组和B组。A组将看到“免费送货”的广告文案，而B组将看到“优惠10%”的广告文案。</li>
+<li>实施： 将两个版本的广告文案应用到网站上，确保两组用户的其他体验因素尽可能相似，以便确保结果的可靠性。</li>
+<li>收集数据： 收集有关用户点击率、转化率（即购买率）、平均订单价等指标的数据，以便比较两组之间的表现。</li>
+</ol>
+<p>数据收集示例：</p>
+<ul>
+<li>A组（“免费送货”）: 点击率：10%，转化率：3%，平均订单价：$50</li>
+<li>B组（“优惠10%”）: 点击率：12%，转化率：4%，平均订单价：$55</li>
+</ul>
+<p>数据分析与结果解读：</p>
+<ol>
+<li>点击率比较： B组的广告文案（“优惠10%”）的点击率高于A组（“免费送货”），这表明B组的广告文案在吸引用户点击方面表现更好。</li>
+<li>转化率比较： B组的转化率也比A组高，这意味着更多的用户点击了广告后进行了购买。</li>
+<li>平均订单价比较： B组的平均订单价也略高于A组，这表明尽管更多用户购买了产品，但他们的购买金额也略高。</li>
+</ol>
+<p>基于这些数据，我们可以得出结论：使用“优惠10%”的广告文案可以带来更高的点击率、转化率和平均订单价，因此在促销这款产品时更有效。</p>
+<p>在A&#x2F;B测试中，关键是确保分组的随机性，并且尽可能控制其他变量，以便所观察到的结果主要是由于广告文案的不同而引起的。</p>
+<p><strong>另外一些例子</strong></p>
+<p>删除页面的promo-code让总销收入增加了27.4%：</p>
+<p><img src="/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310135442547.png" alt="image-20240310135442547"></p>
+<h1 id="T-test"><a href="#T-test" class="headerlink" title="T-test"></a>T-test</h1><p><strong>什么是T-test</strong></p>
+<p>T检验（T-test）是一种统计学方法，用于确定两个样本之间的平均值是否存在显著差异。它是通过比较两个样本的均值和它们的方差来进行的。</p>
+<p>T检验通常用于以下情况：</p>
+<ol>
+<li><p>比较两个样本的平均值： 当你有两组数据，想知道它们的平均值是否有显著差异时，可以使用T检验。</p>
+</li>
+<li><p>样本容量相对较小（小于30）： T检验对于小样本量的数据是比较合适的。</p>
+</li>
+<li><p>假设数据服从正态分布： T检验假设所分析的数据来自于正态分布的总体。</p>
+</li>
+</ol>
+<p>T检验产生一个T值，它表示两个样本平均值之间的差异相对于它们的方差的大小。T值越大，表明两个样本之间的差异越显著。</p>
+<p>T检验的一般步骤包括：</p>
+<ol>
+<li><p>建立假设： 设定零假设（H0）和备择假设（H1）。</p>
+</li>
+<li><p>计算T值： 根据样本数据，计算出T值。</p>
+</li>
+<li><p>确定临界值： 根据显著性水平和自由度，确定T值的临界值。</p>
+</li>
+<li><p>做出决策： 比较计算得到的T值与临界值，决定是否拒绝零假设。</p>
+</li>
+</ol>
+<p>常见的T检验类型包括：</p>
+<ul>
+<li><p>独立样本T检验（Independent Samples T-test）： 用于比较两个不同群体（样本）的平均值是否有显著差异。</p>
+</li>
+<li><p>配对样本T检验（Paired Samples T-test）： 用于比较同一群体（样本）在不同条件下的平均值是否有显著差异。</p>
+</li>
+</ul>
+<p>T检验是统计学中最常用的假设检验方法之一，对于比较实验组和对照组的效果，或者验证研究结果是否具有统计学意义非常有用。</p>
+<p><strong>具体的例子</strong></p>
+<p>假设我们想要测试一种新药物的疗效，我们将患者分为两组：实验组和对照组。实验组接受新药物治疗，而对照组接受传统的治疗方法（比如安慰剂）。我们想要确定新药物是否比传统治疗方法更有效。</p>
+<p>在这个例子中，我们可以使用独立样本T检验来比较两组患者在治疗后症状的改善程度。我们收集了每组患者的症状改善分数，分数越高表示症状改善越明显。</p>
+<p>假设我们有以下数据：</p>
+<ul>
+<li>实验组（新药物治疗）：n1 &#x3D; 30，平均改善分数 &#x3D; 15，标准差 &#x3D; 4</li>
+<li>对照组（传统治疗方法）：n2 &#x3D; 30，平均改善分数 &#x3D; 12，标准差 &#x3D; 3</li>
+</ul>
+<p>我们可以使用T检验来确定这两组平均改善分数之间是否存在显著差异。</p>
+<p>假设我们的零假设为：两组患者的平均改善分数没有显著差异（μ1 &#x3D; μ2）。备择假设为：两组患者的平均改善分数存在显著差异（μ1 ≠ μ2）。</p>
+<p>我们进行T检验后，计算出T值，然后确定在给定显著性水平（通常是0.05）下的临界T值。最后，我们比较计算得到的T值是否大于临界T值。</p>
+<p>如果计算得到的T值大于临界T值，则我们可以拒绝零假设，接受备择假设，即认为两组患者的平均改善分数存在显著差异，新药物治疗可能比传统治疗方法更有效。</p>
+<p>这就是如何在实际研究中使用T检验来比较两组数据，并得出结论的一个例子。</p>
+<p><strong>OFAT</strong></p>
+<p>“One-factor-at-a-time”（OFAT）策略是一种实验设计方法，通常用于优化和改进产品或过程。在这种方法中，每次只调整一个因素，而其他因素保持不变。一旦一个因素被调整和优化，再转移到下一个因素。</p>
+<p><img src="/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310141605430.png" alt="image-20240310141605430"></p>
+<p><img src="/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310142141404.png" alt="image-20240310142141404"></p>
+<p>OFAT策略的主要特点是其简单性和直观性。它易于理解和实施，尤其适用于初步了解系统或过程的性能，以及发现可能的改进方向。</p>
+<p>然而，尽管OFAT方法易于实施，但它也存在一些缺点：</p>
+<ol>
+<li><p>忽略交互作用： OFAT方法无法考虑不同因素之间的交互作用，即当多个因素同时变化时，其效果可能不同于单独调整每个因素时的效果。</p>
+</li>
+<li><p>效率低下： 由于OFAT方法只能调整一个因素，因此可能需要大量的试验才能找到最佳组合。这使得它在寻找最优解时效率低下。</p>
+</li>
+<li><p>结果可能不稳定：由于其他因素保持不变，因此可能无法准确评估调整一个因素时的效果，因为系统可能在不同条件下表现出不同的行为。</p>
+</li>
+</ol>
+<p>因此，在需要更系统和全面地了解多个因素如何影响系统性能时，通常会使用更复杂的实验设计方法，如因子设计或响应曲面方法，以更有效地探索设计空间并优化系统性能。</p>
+<p><strong>一个OFAT的具体的例子</strong></p>
+<p>以下是一个关于饮料生产的OFAT例子：</p>
+<p>假设你是一家饮料公司的生产经理，你希望优化一种汽水的配方，以提高其口感和销售量。你决定使用OFAT方法来逐步调整配方的不同因素，并观察对口感的影响。</p>
+<p>在这个例子中，你的目标是优化汽水的甜度。汽水的甜度取决于几个因素，包括糖的含量、酸度、气泡的量和香料的种类。你决定首先调整糖的含量。</p>
+<ol>
+<li><p>第一阶段：调整糖的含量</p>
+<ul>
+<li>你保持其他因素不变，只调整糖的含量。你分别制作了一系列汽水样品，糖的含量从低到高逐渐增加。</li>
+<li>你邀请一组测试者来品尝每种汽水样品，并填写他们对甜度的评分。</li>
+<li>通过收集测试者的反馈，你确定了最受欢迎的甜度水平。</li>
+</ul>
+</li>
+<li><p>第二阶段：调整酸度</p>
+<ul>
+<li>在第一阶段确定了最佳糖的含量后，你保持这个因素不变，然后调整酸度。你尝试不同酸度水平的汽水，并记录测试者的反馈。</li>
+</ul>
+</li>
+<li><p>以此类推</p>
+<ul>
+<li>接下来，你可以继续逐步调整其他因素，如气泡的量和香料的种类，以进一步改进汽水的口感。</li>
+</ul>
+</li>
+</ol>
+<p>在这个例子中，你使用了OFAT方法来逐步优化汽水的配方。虽然这种方法简单易行，但你必须注意到每个因素的变化可能会相互影响，因此在最终确定最佳配方时，可能需要进行进一步的测试和分析。</p>
+<p><strong>$2^2$ factorial design</strong></p>
+<p>$2^2$ factorial design是一种实验设计方法，用于研究两个因素对实验结果的影响。在这种设计中，每个因素有两个水平。因此，$2^2$表示每个因素有两个水平。</p>
+<p>在$2^2$ factorial design中，每个因素的两个水平可以组合成四种不同的处理组合。这些处理组合是实验的基本单位。</p>
+<p>例如，假设我们正在研究两个因素对植物生长的影响：</p>
+<ol>
+<li>因素A：光照条件（高光照 vs 低光照）</li>
+<li>因素B：水肥条件（高水肥 vs 低水肥）</li>
+</ol>
+<p>在$2^2$ factorial design中，我们可以得到以下四种处理组合：</p>
+<ol>
+<li>高光照 + 高水肥</li>
+<li>高光照 + 低水肥</li>
+<li>低光照 + 高水肥</li>
+<li>低光照 + 低水肥</li>
+</ol>
+<p>通过这种设计，我们可以同时研究两个因素的影响，以及它们可能的交互作用。这使得$2^2$ factorial design成为评估多个因素对实验结果影响的一种有效方法。</p>
+<p>在分析数据时，我们通常会检查每个因素的主效应（即每个因素对结果的影响）以及交互作用（即两个因素一起对结果的影响）。这可以帮助我们更好地理解不同因素之间的关系，以及它们对实验结果的综合影响。</p>
+<p><img src="/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310142839722.png" alt="image-20240310142839722"></p>
+<h1 id="Discrete-Choice-Experiment"><a href="#Discrete-Choice-Experiment" class="headerlink" title="Discrete Choice Experiment"></a>Discrete Choice Experiment</h1><p><strong>什么是离散选择实验</strong></p>
+<p>Discrete Choice Experiment（离散选择实验）是一种经济学和市场研究中常用的方法，用于理解人们在面临多个选择时如何做出决策。它是一种调查方法，用于评估人们对不同产品、服务或政策方案的偏好和选择。</p>
+<p>在离散选择实验中，参与者被要求在给定的一组选项中做出选择，这些选项具有不同的属性和水平。通过观察他们的选择，研究人员可以推断出他们对不同属性的偏好。</p>
+<p>通常，离散选择实验包括以下步骤：</p>
+<ol>
+<li><p>设计选择实验： 研究人员首先确定要研究的产品、服务或政策方案，并确定相关的属性和水平。例如，如果研究一种新的医疗服务，属性可能包括价格、等待时间、服务质量等。</p>
+</li>
+<li><p>创建选择情境： 基于确定的属性和水平，研究人员创建一系列选择情境，每个情境包含几个选项，并且每个选项具有不同的属性水平组合。</p>
+</li>
+<li><p>实施调查： 参与者被要求在每个选择情境中选择他们最偏好的选项。他们的选择被记录下来。</p>
+</li>
+<li><p>数据分析： 使用统计模型（如多项Logit模型）对收集的选择数据进行分析，以确定参与者对不同属性的偏好以及这些偏好如何影响他们的选择行为。</p>
+</li>
+</ol>
+<p>离散选择实验通常被用于市场研究、产品设计、价格设定、政策评估等领域。它可以帮助组织更好地了解消费者的偏好和行为，从而指导决策制定和产品开发。</p>
+<p><strong>具体的例子</strong></p>
+<p>以下是一个关于交通政策的离散选择实验的例子：</p>
+<p>假设一个城市的交通局希望评估不同的公共交通政策对市民出行选择的影响，以确定最受欢迎和可行的政策方案。</p>
+<p>在这个离散选择实验中，研究人员设计了三种不同的公共交通政策方案，并确定了每种方案的关键属性：</p>
+<ol>
+<li>票价水平： 低票价 vs 高票价</li>
+<li>服务频率： 高频服务 vs 低频服务</li>
+<li>舒适度： 高舒适度车辆 vs 低舒适度车辆</li>
+</ol>
+<p>然后，研究人员创建了一系列选择情境，每个情境包含了这三种政策方案中的一种组合。例如：</p>
+<ul>
+<li>情境1：低票价、高频服务、高舒适度</li>
+<li>情境2：高票价、低频服务、低舒适度</li>
+<li>情境3：低票价、低频服务、高舒适度</li>
+</ul>
+<p>参与者被要求在每个情境中选择他们最喜欢的出行方案。他们的选择将提供关于不同政策方案的偏好信息。</p>
+<p>通过收集大量参与者的选择数据，研究人员可以使用统计模型对结果进行分析，以确定市民对不同政策方案的偏好以及他们的选择行为。例如，他们可以确定票价、服务频率和舒适度对市民的影响程度，以及是否存在不同属性之间的交互作用。</p>
+<p>最终，交通局可以根据这些分析结果制定更有效的公共交通政策，以满足市民的需求并改善城市的交通状况。</p>
+<p>下面是一个具有三个因素的离散选择实验的示例，其中包括：</p>
+<ol>
+<li>HACCP标签：是否具有HACCP标签（是&#x2F;否）</li>
+<li>环保标签：是否具有环保标签（是&#x2F;否）</li>
+<li>价格：价格的四个水平（145、150、155、160日元）</li>
+</ol>
+<p>下面是一个可能的选择情境列表：</p>
+<ol>
+<li>HACCP标签：是，环保标签：是，价格：145日元</li>
+<li>HACCP标签：是，环保标签：是，价格：150日元</li>
+<li>HACCP标签：是，环保标签：是，价格：155日元</li>
+<li>HACCP标签：是，环保标签：是，价格：160日元</li>
+<li>HACCP标签：是，环保标签：否，价格：145日元</li>
+<li>HACCP标签：是，环保标签：否，价格：150日元</li>
+<li>HACCP标签：是，环保标签：否，价格：155日元</li>
+<li>HACCP标签：是，环保标签：否，价格：160日元</li>
+<li>HACCP标签：否，环保标签：是，价格：145日元</li>
+<li>HACCP标签：否，环保标签：是，价格：150日元</li>
+<li>HACCP标签：否，环保标签：是，价格：155日元</li>
+<li>HACCP标签：否，环保标签：是，价格：160日元</li>
+<li>HACCP标签：否，环保标签：否，价格：145日元</li>
+<li>HACCP标签：否，环保标签：否，价格：150日元</li>
+<li>HACCP标签：否，环保标签：否，价格：155日元</li>
+<li>HACCP标签：否，环保标签：否，价格：160日元</li>
+</ol>
+<p>在这些情境中，参与者被要求选择他们最喜欢的选项，每个选项由HACCP标签、环保标签和价格组成。通过观察参与者的选择，研究人员可以了解不同因素对消费者偏好和选择行为的影响。</p>
+<p>收集到的数据可以通过统计分析来帮助了解不同因素对消费者偏好和选择行为的影响。具体而言，可以使用离散选择模型（如Logit模型或Probit模型）来分析数据，以确定消费者对不同因素的偏好以及这些偏好如何影响其选择行为。</p>
+<p>离散选择模型基于消费者在给定选择情境中做出的选择来估计消费者对不同属性的偏好程度。在这种情况下，选择情境包括HACCP标签、环保标签和价格等因素的不同水平组合。通过分析参与者在不同情境下的选择，可以得出以下结论：</p>
+<ol>
+<li><p>属性影响： 离散选择模型可以确定不同属性对消费者选择行为的影响。例如，模型可以告诉我们消费者更倾向于选择具有HACCP标签或环保标签的产品，还是更关注价格。</p>
+</li>
+<li><p>交互作用： 模型还可以确定不同属性之间的交互作用。这意味着消费者对一个属性的偏好可能会受到其他属性水平的影响。例如，价格对消费者的影响可能因为产品是否具有HACCP标签而有所不同。</p>
+</li>
+<li><p>市场细分： 通过分析消费者对不同属性的偏好，可以识别市场细分。例如，一些消费者可能更愿意为具有HACCP标签和环保标签的产品支付更高的价格，而另一些消费者可能更关注价格。</p>
+</li>
+<li><p>产品定价和市场定位： 通过了解消费者对不同属性的偏好，企业可以调整产品定价和市场定位。他们可以根据消费者的偏好设计和定价产品，以吸引更多的消费者。</p>
+</li>
+</ol>
+<p>总之，通过分析离散选择实验收集到的数据，可以更好地理解消费者对产品属性的偏好和选择行为，从而指导产品开发、定价和市场营销策略的制定。</p>
+<h1 id="R语言代码与设计"><a href="#R语言代码与设计" class="headerlink" title="R语言代码与设计"></a>R语言代码与设计</h1><p><strong>full factorial design</strong></p>
+<p>代码如下所示：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R<span class="operator">&gt;</span> library<span class="punctuation">(</span>AlgDesign<span class="punctuation">)</span></span><br><span class="line">R<span class="operator">&gt;</span> ffd <span class="operator">&lt;-</span> gen.factorial<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">2</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">)</span><span class="punctuation">,</span> varNames <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;HAC&quot;</span><span class="punctuation">,</span> <span class="string">&quot;ECO&quot;</span><span class="punctuation">,</span> <span class="string">&quot;PRI&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> factors <span class="operator">=</span> <span class="string">&quot;all&quot;</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">R<span class="operator">&gt;</span> ffd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面的R代码使用了R语言中的<code>AlgDesign</code>包来生成一个Full Factorial Design（完全因子设计）。</p>
+<p>让我解释一下这段代码的含义：</p>
+<ol>
+<li><p><strong>载入包：</strong></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>AlgDesign<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>这一行代码加载了<code>AlgDesign</code>包，该包包含了用于实验设计的函数。</p>
+</li>
+<li><p><strong>生成Full Factorial Design：</strong></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffd <span class="operator">&lt;-</span> gen.factorial<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">2</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">)</span><span class="punctuation">,</span> varNames <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;HAC&quot;</span><span class="punctuation">,</span> <span class="string">&quot;ECO&quot;</span><span class="punctuation">,</span> <span class="string">&quot;PRI&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> factors <span class="operator">=</span> <span class="string">&quot;all&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>这行代码调用了<code>gen.factorial</code>函数来生成一个Full Factorial Design。函数的参数如下：</p>
+<ul>
+<li><code>c(2,2,4)</code>指定了每个因素的水平数目。在这个例子中，有三个因素，分别是HAC、ECO和PRI。它们的水平数分别是2、2和4。</li>
+<li><code>varNames = c(&quot;HAC&quot;, &quot;ECO&quot;, &quot;PRI&quot;)</code>指定了每个因素的名称，使得结果更易读。</li>
+<li><code>factors = &quot;all&quot;</code>表示生成所有可能的因子组合。</li>
+</ul>
+</li>
+<li><p><strong>结果：</strong><br><code>ffd</code>是一个包含了Full Factorial Design的数据框架或矩阵。它列出了所有可能的因子组合，其中每一行表示一个处理组合，每一列代表一个因素。通过这个设计，你可以在实验中使用这些处理组合来进行测试和观察。</p>
+</li>
+</ol>
+<p>总之，这段代码的作用是生成一个Full Factorial Design，它列出了所有可能的因子组合，以便用于实验设计和数据分析。</p>
+<p>结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">   HAC ECO PRI</span><br><span class="line">1    1   1   1</span><br><span class="line">2    2   1   1</span><br><span class="line">3    1   2   1</span><br><span class="line">4    2   2   1</span><br><span class="line">5    1   1   2</span><br><span class="line">6    2   1   2</span><br><span class="line">7    1   2   2</span><br><span class="line">8    2   2   2</span><br><span class="line">9    1   1   3</span><br><span class="line">10   2   1   3</span><br><span class="line">11   1   2   3</span><br><span class="line">12   2   2   3</span><br><span class="line">13   1   1   4</span><br><span class="line">14   2   1   4</span><br><span class="line">15   1   2   4</span><br><span class="line">16   2   2   4</span><br></pre></td></tr></table></figure>
+
+<p>这个结果是Full Factorial Design（完全因子设计）的一部分。让我来解释一下：</p>
+<ul>
+<li><code>HAC</code>、<code>ECO</code>和<code>PRI</code>是因子（或变量）的名称，它们分别代表了不同的实验条件或水平。</li>
+<li>每一行代表一个处理组合，包含了所有因子的可能组合。</li>
+<li>每列的数字代表了对应因子的水平。在这个例子中，每个因子有不同的水平数目。</li>
+</ul>
+<p>让我们具体解释一下：</p>
+<ul>
+<li><code>HAC</code>（HACCP标签）有两个水平，分别为1和2。</li>
+<li><code>ECO</code>（环保标签）也有两个水平，同样为1和2。</li>
+<li><code>PRI</code>（价格）有四个水平，分别为1、2、3和4。</li>
+</ul>
+<p>因此，结果显示了所有可能的因子组合。例如，第一行显示了当HAC为水平1、ECO为水平1、PRI为水平1时的处理组合；第二行显示了HAC为水平2、ECO为水平1、PRI为水平1的处理组合，依此类推，直到最后一行显示了HAC为水平2、ECO为水平2、PRI为水平4的处理组合。</p>
+<p>通过这个设计，你可以在实验中使用这些处理组合来进行测试和观察，以便了解不同因子组合对结果的影响。</p>
+<p><strong>factional factorial design</strong></p>
+<p><img src="/2024/03/10/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-02%EF%BC%9AA-B%E6%B5%8B%E8%AF%95%E5%92%8C%E7%A6%BB%E6%95%A3%E9%80%89%E9%A1%B9%E5%AE%9E%E9%AA%8C/image-20240310145743888.png" alt="image-20240310145743888"></p>
+<p>Factorial factorial design是一种实验设计方法，用于研究多个因素对实验结果的影响。与Full Factorial Design相比，Fractional Factorial Design（分数因子设计）使用更少的实验运行，以更有效地探索因素之间的关系。</p>
+<p>在Fractional Factorial Design中，只考虑了完全因子设计中的一部分因素组合，而忽略了其他组合。这样做的目的是降低实验成本和时间，同时仍然提供足够的信息来推断因素之间的关系。</p>
+<p>通常情况下，选择哪些因素组合以及如何构建Fractional Factorial Design是基于设计矩阵（design matrix）的特定规则和原则。这些规则包括最小异构性（minimum aberration）、最大低线性度（maximum resolution at the smallest number of runs）、最大可能度（maximum run size）、剩余自由度等。</p>
+<p>Fractional Factorial Design的优点包括减少了实验成本和时间，同时仍然提供了对因素之间主要交互作用的估计。但是，由于忽略了一些因素组合，可能会丧失某些信息，因此需要谨慎选择设计方案以平衡实验效率和信息获取。</p>
+<p><strong>设计实验</strong></p>
+<p>这个产品具有以下三个属性：</p>
+<ol>
+<li><p>产地区域： 包括 Region A（地区A）、Region B（地区B）、Region C（地区C）。这表示了产品的生产地点或来源地。</p>
+</li>
+<li><p>环保标签： 有三种选项，分别是“Conv.”（传统种植方法）、“More”（更环保的种植方法）和“Most”（最环保的种植方法）。这表示了产品的生产方式，从传统到更环保再到最环保。</p>
+</li>
+<li><p>产品单价： 包括 $1、$1.1 和 $1.2。这表示了每个产品的价格。</p>
+</li>
+</ol>
+<p>这些属性可以帮助消费者在购买产品时做出选择，例如，他们可以根据产品的产地、环保标签和价格来做出决定。</p>
+<p>设计的问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Q1 please select your most preferred alternative from the following:</span><br><span class="line"></span><br><span class="line">product 1: region B, more, $1.1</span><br><span class="line">product 2: region c, most, $1.2</span><br><span class="line"></span><br><span class="line">1. I select product 1</span><br><span class="line">2. I select product 2</span><br><span class="line">3. I select none of these</span><br></pre></td></tr></table></figure>
+
+<p>这个问题是一个离散选择实验的一部分，目的是了解参与者对不同产品属性组合的偏好。</p>
+<ul>
+<li><p>产品1具有以下属性：</p>
+<ul>
+<li>产地区域：Region B（地区B）</li>
+<li>环保标签：More（更环保的种植方法）</li>
+<li>产品单价：$1.1</li>
+</ul>
+</li>
+<li><p>产品2具有以下属性：</p>
+<ul>
+<li>产地区域：Region C（地区C）</li>
+<li>环保标签：Most（最环保的种植方法）</li>
+<li>产品单价：$1.2</li>
+</ul>
+</li>
+</ul>
+<p>参与者被要求在这两个选项中选择他们最喜欢的一个，或者选择不喜欢任何一个选项。</p>
+<p>这个问题的目的是了解消费者对产品属性的偏好以及他们的购买决策。通过收集参与者的选择，研究人员可以分析哪些产品属性对消费者的决策起到了关键作用，并据此制定更有针对性的产品策略和市场营销策略。</p>
+<p>为了确定不同属性对消费者决策的影响，通常需要进行更为系统和全面的实验设计。例如，在一个Full Factorial Design或Fractional Factorial Design中，会考虑更多的产品属性组合，并且每个属性的水平会在不同选项中变化，以便能够直接比较不同属性对消费者决策的影响。</p>
+<p><strong>使用R代码来实现</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">des1 &lt;- rotation.design(attribute.names = list(</span><br><span class="line">           Region = c(&quot;Reg_A&quot;, &quot;Reg_B&quot;, &quot;Reg_C&quot;),</span><br><span class="line">           Eco = c(&quot;Conv.&quot;, &quot;More&quot;, &quot;Most&quot;),</span><br><span class="line">           Price = c(&quot;1&quot;, &quot;1.1&quot;, &quot;1.2&quot;)),</span><br><span class="line">           nalternatives = 2, nblocks = 1, row.renames = FALSE,</span><br><span class="line">           randomize = TRUE, seed = 987)</span><br></pre></td></tr></table></figure>
+
+<p>这行代码调用了<code>rotation.design</code>函数来生成一个离散选择实验的设计。函数的参数如下：</p>
+<ul>
+<li><code>attribute.names</code>指定了实验中的属性名称和属性水平。在这个例子中，属性包括Region（产地区域）、Eco（环保标签）和Price（产品价格），每个属性有不同的水平。</li>
+<li><code>nalternatives</code>指定了每个选择情境中的备选产品数量。在这个例子中，每个情境中有两个备选产品。</li>
+<li><code>nblocks</code>指定了实验中的块数，即重复实验的次数。</li>
+<li><code>row.renames</code>指定了是否对行进行重命名。</li>
+<li><code>randomize</code>指定了是否随机化实验设计。</li>
+<li><code>seed</code>指定了随机数生成器的种子。</li>
+</ul>
+<p><code>des1</code>是一个包含了离散选择实验设计的对象，它包含了实验设计的详细信息，包括选择情境、属性水平等。</p>
+<p>得到的结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">Choice sets:</span><br><span class="line">alternative 1 in each choice set</span><br><span class="line">  BLOCK QES ALT Region   Eco Price</span><br><span class="line">8     1   1   1  Reg_A  Most   1.1</span><br><span class="line">7     1   2   1  Reg_A  More   1.2</span><br><span class="line">1     1   3   1  Reg_C  Most   1.2</span><br><span class="line">5     1   4   1  Reg_C  More     1</span><br><span class="line">3     1   5   1  Reg_B  More   1.1</span><br><span class="line">9     1   6   1  Reg_B  Most     1</span><br><span class="line">2     1   7   1  Reg_C Conv.   1.1</span><br><span class="line">6     1   8   1  Reg_B Conv.   1.2</span><br><span class="line">4     1   9   1  Reg_A Conv.     1</span><br><span class="line"></span><br><span class="line">alternative 2 in each choice set</span><br><span class="line">  BLOCK QES ALT Region   Eco Price</span><br><span class="line">2     1   1   2  Reg_A  More   1.2</span><br><span class="line">3     1   2   2  Reg_C  Most   1.2</span><br><span class="line">6     1   3   2  Reg_C  More     1</span><br><span class="line">4     1   4   2  Reg_B  More   1.1</span><br><span class="line">8     1   5   2  Reg_B Conv.   1.2</span><br><span class="line">1     1   6   2  Reg_A Conv.     1</span><br><span class="line">5     1   7   2  Reg_A  Most   1.1</span><br><span class="line">9     1   8   2  Reg_C Conv.   1.1</span><br><span class="line">7     1   9   2  Reg_B  Most     1</span><br><span class="line"></span><br><span class="line">Candidate design:</span><br><span class="line">  A B C</span><br><span class="line">1 3 3 3</span><br><span class="line">2 3 1 2</span><br><span class="line">3 2 2 2</span><br><span class="line">4 1 1 1</span><br><span class="line">5 3 2 1</span><br><span class="line">6 2 1 3</span><br><span class="line">7 1 2 3</span><br><span class="line">8 1 3 2</span><br><span class="line">9 2 3 1</span><br><span class="line">class=design, type= oa </span><br><span class="line"></span><br><span class="line">Design information:</span><br><span class="line">number of blocks = 1 </span><br><span class="line">number of questions per block = 9 </span><br><span class="line">number of alternatives per choice set = 2 </span><br><span class="line">number of attributes per alternative = 3 </span><br></pre></td></tr></table></figure>
+
+<p>这段输出提供了关于离散选择实验设计的详细信息，包括选择情境和候选设计。</p>
+<p>Choice sets（选择情境）：</p>
+<p>在选择情境中，每个选择情境包含了两个备选产品（alternative 1 和 alternative 2）。每个备选产品具有相应的属性，包括地区（Region）、环保标签（Eco）和价格（Price）。</p>
+<ul>
+<li>alternative 1 中的选择情境显示了每个备选产品的属性组合，如地区、环保标签和价格。</li>
+<li>alternative 2 中的选择情境也显示了每个备选产品的属性组合。</li>
+</ul>
+<p>Candidate design（候选设计）：</p>
+<p>候选设计显示了实验设计的具体安排，其中每行代表一个选择情境。A、B、C 分别代表了属性的水平。例如，第一行显示了一个选择情境，其中第一个备选产品具有属性 A、属性 B、属性 C 的水平 3，第二个备选产品具有相同的属性水平。</p>
+<p>Design information（设计信息）：</p>
+<p>这部分提供了有关实验设计的基本信息，包括块数、每个块中的问题数、每个选择情境中的备选产品数以及每个备选产品的属性数量。</p>
+<p>通过这些信息，你可以了解到实验设计的细节，以便进行离散选择实验，并收集参与者的选择数据。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag"># 数据分析</a>
+              <a href="/tags/%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90/" rel="tag"># 客户分析</a>
+              <a href="/tags/%E7%BB%9F%E8%AE%A1/" rel="tag"># 统计</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/09/%E5%A4%A7%E5%9E%8B%E7%BB%84%E7%BB%87%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%88%B7%E5%88%86%E6%9E%90-01%EF%BC%9A%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86/" rel="prev" title="大型组织中的客户分析-01：介绍与数据收集">
+                  <i class="fa fa-chevron-left"></i> 大型组织中的客户分析-01：介绍与数据收集
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/12/26/%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BA%BA%E7%94%9F%E4%B8%83%E5%B9%B4%E8%AE%A1%E5%88%92/" rel="next" title="第一个人生七年计划">
+                  第一个人生七年计划 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ye Jiu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
